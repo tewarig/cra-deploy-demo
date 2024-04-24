@@ -15,10 +15,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
-          demo
-          build demo
-          another check
+        Branch Check
         </a>
       </header>
     </div>
