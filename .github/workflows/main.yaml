@@ -42,6 +42,5 @@ jobs:
       uses: peter-evans/commit-comment@v3
       with:
        body: |
-        all the best 
-        [${{ github.repository_owner }}-${{ github.sha }}](http://${{ github.repository_owner }}-${{ github.sha }}.localhost:8000)
-       reactions: cat
+         [${{ github.repository_owner }}-${{ github.sha }}](http://${{ github.repository_owner }}-${{ github.sha }}.localhost:8000)
+       
