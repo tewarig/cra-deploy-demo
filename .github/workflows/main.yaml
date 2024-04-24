@@ -23,6 +23,10 @@ jobs:
     - name: Build
       run: npm run build
 
+    - name: Extract branch name
+      shell: bash
+      run: echo "BRANCH_NAME=$(echo ${GITHUB_REF#refs/heads/})" >> $GITHUB_ENV
+
     - name: Upload to Cloudflare R2
       uses: ryand56/r2-upload-action@latest
       with:
@@ -31,5 +35,4 @@ jobs:
         r2-secret-access-key: ${{ secrets.R2_SECRET_ACCESS_KEY }}
         r2-bucket: ${{ secrets.R2_BUCKET }}
         source-dir: ./build
-        destination-dir: ${{ github.repository_owner }}/${{ github.ref }}
-       
+        destination-dir: ${{ github.repository_owner }}/${{ github.BRANCH_NAME }}
