@@ -17,6 +17,7 @@ function App() {
         >
           Learn React
           demo
+          build demo
         </a>
       </header>
     </div>
