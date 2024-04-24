@@ -16,7 +16,7 @@ function App() {
           rel="noopener noreferrer"
         >
         Branch Check
-        Chore: check check
+        Chore: check check :(
         </a>
       </header>
     </div>

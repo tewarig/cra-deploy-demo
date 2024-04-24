@@ -1,33 +1,27 @@
 name: Upload to cloudflare
-
 on:
   push:
     branches:
       - '**'
-
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
       with:
         ref: ${{ github.head_ref }}
-
     - name: Setup Node.js environment
       uses: actions/setup-node@v2
       with:
-        node-version: '16'
-
+        node-version: '14'
     - name: Install Dependencies
       run: npm ci
-
     - name: Build
       run: npm run build
 
     - name: Get branch name
-      run: echo "BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)" >> $GITHUB_ENV
+      run: echo "BRANCH_NAME=${GITHUB_REF#refs/heads/}" >> $GITHUB_ENV
 
     - name: Upload to Cloudflare R2
       uses: ryand56/r2-upload-action@latest
@@ -38,9 +32,11 @@ jobs:
         r2-bucket: ${{ secrets.R2_BUCKET }}
         source-dir: ./build
         destination-dir: ${{ github.repository_owner }}-${{ github.sha }}
+       run: echo "::set-output name=upload_successful::true"
+
     - name: Create commit comment
       uses: peter-evans/commit-comment@v3
       with:
        body: |
-         [${{ github.repository_owner }}-${{ github.sha }}](http://${{ github.repository_owner }}-${{ github.sha }}.localhost:8000)
-       
+         [${{  env.BRANCH_NAME  }}-${{ github.sha }}](http://${{ github.repository_owner }}-${{ github.sha }}.localhost:8000)
+      token: ${{ secrets.GITHUB_TOKEN }}
