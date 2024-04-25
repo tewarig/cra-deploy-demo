@@ -20,10 +20,8 @@ jobs:
     - name: Build
       run: npm run build
 
-    - name: Get branch name
-      run: echo "BRANCH_NAME=${GITHUB_REF#refs/heads/}" >> $GITHUB_ENV
-    
-      echo: http://${{ github.repository_owner }}-${{ github.sha }}.localhost:8000
+    - name: Run shell cmd
+      run: echo "http://${{ github.repository_owner }}-${{ github.sha }}.localhost:8000"
 
     - name: Upload to Cloudflare R2
       uses: ryand56/r2-upload-action@latest
