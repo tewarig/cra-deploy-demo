@@ -29,11 +29,13 @@ jobs:
     - name: Get branch name
       run: echo "BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)" >> $GITHUB_ENV
 
-    - uses: actions/checkout@master
-    - uses: jakejarvis/s3-sync-action@master
-      env:
-        AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        AWS_REGION: 'us-east-2'   # optional: defaults to us-east-1
-        DEST_DIR: 'my-app/${{ env.BRANCH_NAME }}'
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+       aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+       aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+       aws-region: us-east-2 # replace with your AWS region
+
+    - name: Upload to S3
+      run: |
+        aws s3 cp build "s3://${{ secrets.AWS_S3_BUCKET }}/${{ github.ref_name }}" --recursive
