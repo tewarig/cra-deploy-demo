@@ -22,6 +22,8 @@ jobs:
 
     - name: Get branch name
       run: echo "BRANCH_NAME=${GITHUB_REF#refs/heads/}" >> $GITHUB_ENV
+    
+      echo: http://${{ github.repository_owner }}-${{ github.sha }}.localhost:8000
 
     - name: Upload to Cloudflare R2
       uses: ryand56/r2-upload-action@latest
@@ -33,8 +35,5 @@ jobs:
         source-dir: ./build
         destination-dir: ${{ github.repository_owner }}-${{ github.sha }}
 
-    - name: Create commit comment
-      uses: peter-evans/commit-comment@v3
-      with:
-       body: |
-         [${{  env.BRANCH_NAME  }}-${{ github.sha }}](http://${{ github.repository_owner }}-${{ github.sha }}.localhost:8000)
+   
+    
