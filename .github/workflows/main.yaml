@@ -51,3 +51,13 @@ jobs:
         AWS_REGION: "eu-north-1"
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    - name: Create commit comment
+      uses: peter-evans/commit-comment@v3
+      with:
+          body: |
+            This is a multi-line test comment
+            - With GitHub **Markdown** :sparkles:
+            - Created by [commit-comment][1]
+
+            [1]: https://${{ steps.format.outputs.branch }}.apppreview.tech
+          reactions: '+1'
