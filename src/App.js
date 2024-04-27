@@ -15,10 +15,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Cool Stuff
-          random change
-          aws cred demo  -2
-            new bucket
+          Cool demo 
         </a>
       </header>
     </div>
