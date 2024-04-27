@@ -15,7 +15,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Cool demo 
+          Cool demo for actions
         </a>
       </header>
     </div>
