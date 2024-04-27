@@ -19,7 +19,7 @@ jobs:
           script: |
             const issue_number = context.issue.number;
             const branch = '${{ steps.format.outputs.branch }}';
-            const body = `👋 Thanks for making this pr! [Link to App Preview](https://${{ steps.format.outputs.branch }}.apppreview.tech)`;
+            const body = `👋 Thanks for making this pr! [Link to App Preview](https://${branch}.apppreview.tech)`;
             github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
