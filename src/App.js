@@ -16,9 +16,7 @@ function App() {
           rel="noopener noreferrer"
         >
           Cool Stuff
-          random change
-          yo yo dem
-          dewvwe ee
+          random change 34433
         </a>
       </header>
     </div>
