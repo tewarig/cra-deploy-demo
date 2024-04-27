@@ -18,7 +18,7 @@ function App() {
           Cool Stuff
           random change
           yo yo demo
-          69
+          6th change
         </a>
       </header>
     </div>
