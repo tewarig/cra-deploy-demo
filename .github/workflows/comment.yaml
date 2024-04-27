@@ -8,11 +8,12 @@ jobs:
   comment:
     runs-on: ubuntu-latest
     steps:
-      - name: Format branch name
-        run: echo "BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)" >> $GITHUB_ENV
+      - name: Get branch names
+        id: branch-names
+        uses: tj-actions/branch-names@v8
       - name: Format branch name
         id: format
-        run: echo "::set-output name=branch::$(echo ${{ github.ref_name }} | sed 's/\//-/g')"
+        run: echo "::set-output name=branch::$(echo ${{ github.GITHUB_BASE_REF }} | sed 's/\//-/g')"
 
       - name: Comment PR
         uses: actions/github-script@v5
@@ -20,8 +21,8 @@ jobs:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
             const issue_number = context.issue.number;
-            const branch = '${{ steps.format.outputs.branch }}';
-            const body = `👋 Thanks for making this pr! [Link to App Preview](https://${branch}.apppreview.tech)`;
+            const branch = '${{ steps.branch-names.outputs.current_branch }}';
+            const body = `👋 Thanks for making this pr! [${branch}.apppreview.tech](https://${branch}.apppreview.tech)`;
             github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
