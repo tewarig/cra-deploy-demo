@@ -17,7 +17,7 @@ function App() {
         >
           Cool Stuff
           random change
-          yo yo demo
+          aws cred demo 
         </a>
       </header>
     </div>
