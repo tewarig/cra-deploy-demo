@@ -55,9 +55,7 @@ jobs:
       uses: peter-evans/commit-comment@v3
       with:
           body: |
-            This is a multi-line test comment
-            - With GitHub **Markdown** :sparkles:
-            - Created by [commit-comment][1]
+            Preview this branch on [AppPreview]
 
-            [1]: https://${{ steps.format.outputs.branch }}.apppreview.tech
+            [https://${{ steps.format.outputs.branch }}.apppreview.tech]: https://${{ steps.format.outputs.branch }}.apppreview.tech
           reactions: '+1'
