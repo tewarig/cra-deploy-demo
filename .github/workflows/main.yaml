@@ -57,5 +57,5 @@ jobs:
           body: |
             Preview this branch on [AppPreview]
 
-            [https://${{ steps.format.outputs.branch }}.apppreview.tech]: https://${{ steps.format.outputs.branch }}.apppreview.tech
+            [https://${{ steps.format.outputs.branch }}.apppreview.tech](https://${{ steps.format.outputs.branch }}.apppreview.tech)
           reactions: '+1'
