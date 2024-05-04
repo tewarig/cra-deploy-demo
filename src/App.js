@@ -11,7 +11,7 @@ function App() {
       path: "/",
       element: (
         <div>
-          <h1>Hello World</h1>
+          <h1>Hello World</h1> .
           <Link to="about">About Us</Link>
         </div>
       ),
