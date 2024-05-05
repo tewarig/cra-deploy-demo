@@ -1,6 +1,9 @@
 name: Comment on PR
 
 on:
+  push:
+    branches:
+      - "**"
   pull_request:
     types: [opened, synchronize]
 
@@ -13,7 +16,7 @@ jobs:
         uses: tj-actions/branch-names@v8
       - name: Format branch name
         id: format
-        run: echo "::set-output name=branch::$(echo ${{ github.GITHUB_BASE_REF }} | sed 's/\//-/g')"
+        run: echo "::set-output name=branch::client-$(echo ${{ github.ref_name }} | sed 's/\//-/g' | tr '[:upper:]' '[:lower:]')"
 
       - name: Comment PR
         uses: actions/github-script@v5
